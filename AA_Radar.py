@@ -360,9 +360,9 @@ def Cmidfield_radar(df_general, df_defense, df_attack, df_passing, df_fysical, b
     attack['Goals'] = df_attack.iloc[:, 5]
     attack['Assists'] = df_attack.iloc[:, 6]  
     attack['Shots'] = df_attack.iloc[:, 7]
-    attack['Dribbles'] = df_attack.iloc[:, 13]
-    attack['Succesfull Dribbles'] = df_attack.iloc[:, 14]
-    attack['% Succesfull Dribbles'] = np.nan
+    attack['TDribbles'] = df_attack.iloc[:, 13]
+    attack['Dribbles'] = df_attack.iloc[:, 14]
+    attack['% Dribbles'] = np.nan
     #attack['Progressive Runs'] = df_attack.iloc[:, 19]
     attack['Passes'] = df_passing.iloc[:, 5]
     attack['Accurate Passes'] = df_passing.iloc[:, 6]
@@ -398,7 +398,7 @@ def Cmidfield_radar(df_general, df_defense, df_attack, df_passing, df_fysical, b
     attack_grouped = attack.groupby('Player').mean()
     attack_grouped = ((attack_grouped / mean_minutes) * 90).round(2)
     attack_grouped['% Succesfull Actions'] = ((attack_grouped['Succesfull Actions'] / attack_grouped['Total Actions'])*100).round(2)
-    attack_grouped['% Succesfull Dribbles'] = ((attack_grouped['Succesfull Dribbles'] / attack_grouped['Dribbles'])*100).round(2)
+    attack_grouped['% Dribbles'] = ((attack_grouped['Dribbles'] / attack_grouped['TDribbles'])*100).round(2)
     attack_grouped['% Passes'] = ((attack_grouped['Accurate Passes'] / attack_grouped['Passes'])*100).round(2)
     #attack_grouped['% Long Passes'] = ((attack_grouped['Accurate Long Passes'] / attack_grouped['Long Passes'])*100).round(2)
     #attack_grouped['% Through Passes'] = ((attack_grouped['Accurate Through Passes'] / attack_grouped['Through Passes'])*100).round(2)
@@ -406,7 +406,7 @@ def Cmidfield_radar(df_general, df_defense, df_attack, df_passing, df_fysical, b
     attack_grouped['Rec./ Losses Ratio'] = (attack_grouped['Recoveries'] / attack_grouped['Losses']).round(2)
     attack_grouped['Forward/ Back Pass'] = (attack_grouped['Forward Passes'] / attack_grouped['Back Passes']).round(2)
     attack_grouped['% Def. Duels Won'] = ((attack_grouped['Defensive Duels Won'] / attack_grouped['Defensive Duels'])*100).round(2)
-    attack_grouped.drop(columns=['Succesfull Actions', 'Total Actions', 'Dribbles', 'Succesfull Dribbles', 'Passes', 'Accurate Passes', 'Recoveries', 'Losses', 'Forward Passes', 'Back Passes', 'Defensive Duels Won', 'Defensive Duels'],
+    attack_grouped.drop(columns=['Succesfull Actions', 'Total Actions', 'TDribbles', 'Passes', 'Accurate Passes', 'Recoveries', 'Losses', 'Forward Passes', 'Back Passes', 'Defensive Duels Won', 'Defensive Duels'],
                         inplace= True)
     Attackers = attack_grouped.merge(attackfys_group, how= 'left', on = 'Player')
     lijst_spelersgroep.append(Attackers)
@@ -532,19 +532,19 @@ def radar(df, lijst):
     if not os.path.exists(bestandsnaam1) and not os.path.exists(bestandsnaam2):
         # Voer script uit als geen van beide bestanden bestaat
         st.markdown('Geen fysieke data beschikbaar voor beide spelers.')
-        te_verwijderen_kolommen = ['Total Distance', 'Sprints', 'PSV-99', 'HI Distance', 'High Accelerations']
+        te_verwijderen_kolommen = ['Distance', 'Total Distance', 'Sprints', 'PSV-99', 'HI Distance', 'High Accelerations']
         df = df.drop(columns=[kolom for kolom in te_verwijderen_kolommen if kolom in df])
     elif os.path.exists(bestandsnaam1) and not os.path.exists(bestandsnaam2):
         # Voer script uit als alleen het eerste bestand bestaat
         with col2:
             st.markdown(f"Er is geen fysieke data beschikbaar voor {options2}.")
-        te_verwijderen_kolommen = ['Total Distance', 'Sprints', 'PSV-99']
+        te_verwijderen_kolommen = ['Distance', 'Total Distance', 'Sprints', 'PSV-99', 'HI Distance', 'High Accelerations']
         df = df.drop(columns=[kolom for kolom in te_verwijderen_kolommen if kolom in df])
     elif not os.path.exists(bestandsnaam1) and os.path.exists(bestandsnaam2):
         # Voer script uit als alleen het tweede bestand bestaat
         with col2:
             st.markdown(f"Er is geen fysieke data beschikbaar voor {options1}.")
-        te_verwijderen_kolommen = ['Total Distance', 'Sprints', 'PSV-99']
+        te_verwijderen_kolommen = ['Distance', 'Total Distance', 'Sprints', 'PSV-99', 'HI Distance', 'High Accelerations']
         df = df.drop(columns=[kolom for kolom in te_verwijderen_kolommen if kolom in df])
     else:
         pass
