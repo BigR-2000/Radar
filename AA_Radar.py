@@ -522,12 +522,12 @@ def radar(df, lijst):
     with col3:
         options2 = st.radio('Speler2', options=lijst)
 
-    bestandsnaam1 = f"Skillcorner {options1}.csv"
-    bestandsnaam2 = f"Skillcorner {options2}.csv"
+    bestandsnaam1 = f"SkillCorner {options1}.csv"
+    bestandsnaam2 = f"SkillCorner {options2}.csv"
     if options1.startswith('Top'):
-        bestandsnaam1 = f"Skillcorner G. Orban.csv"
+        bestandsnaam1 = f"SkillCorner G. Orban.csv"
     if options2.startswith('Top'):
-        bestandsnaam2 = f"Skillcorner G. Orban.csv"
+        bestandsnaam2 = f"SkillCorner G. Orban.csv"
     
     if not os.path.exists(bestandsnaam1) and not os.path.exists(bestandsnaam2):
         # Voer script uit als geen van beide bestanden bestaat
@@ -619,9 +619,9 @@ def inlezen_bestanden(lijst):
         df_a = pd.read_excel(fr"Player stats {player} (2).xlsx")
         df_p = pd.read_excel(fr"Player stats {player} (3).xlsx")
         try:
-            df_f = pd.read_csv(fr"Skillcorner {player}.csv", encoding='latin1', sep=';')
+            df_f = pd.read_csv(fr"SkillCorner {player}.csv", encoding='latin1', sep=';')
         except:
-            df_f = pd.read_csv(fr"Skillcorner T. Tissoudali.csv", encoding='latin1', sep=';')
+            df_f = pd.read_csv(fr"SkillCorner T. Tissoudali.csv", encoding='latin1', sep=';')
             df_f.drop(df_f.index, inplace=True)
         bestand = (fr"Player stats {player}.xlsx")
         attacker(df_g, df_d, df_a, df_p, df_f, bestand)
