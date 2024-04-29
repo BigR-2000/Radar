@@ -43,7 +43,7 @@ lijst_games = []
 
 def attacker(df_general, df_defense, df_attack, df_passing, df_fysical, bestandsnaam):
     naam_delen = os.path.splitext(bestandsnaam)[0].split()
-    speler_naam = " ".join(naam_delen[6:8])
+    speler_naam = " ".join(naam_delen[2:4])
 
     general = pd.DataFrame(columns=['Player', 'Total Actions', 'Succesfull Actions', '% Succesfull Actions'])
     general['Player'] = [speler_naam] * len(df_general)
@@ -534,12 +534,12 @@ def radar(df, lijst):
     with col3:
         options2 = st.radio('Speler2', options=lijst)
 
-    bestandsnaam1 = f"C:\\Users\\remid\\OneDrive\\Documenten\\Stage Kaa Gent\\Opdracht 2 benchmarking\\Fysiek\\Skillcorner {options1}.csv"
-    bestandsnaam2 = f"C:\\Users\\remid\\OneDrive\\Documenten\\Stage Kaa Gent\\Opdracht 2 benchmarking\\Fysiek\\Skillcorner {options2}.csv"
+    bestandsnaam1 = f"Skillcorner {options1}.csv"
+    bestandsnaam2 = f"Skillcorner {options2}.csv"
     if options1.startswith('Top'):
-        bestandsnaam1 = f"C:\\Users\\remid\\OneDrive\\Documenten\\Stage Kaa Gent\\Opdracht 2 benchmarking\\Fysiek\\Skillcorner G. Orban.csv"
+        bestandsnaam1 = f"Skillcorner G. Orban.csv"
     if options2.startswith('Top'):
-        bestandsnaam2 = f"C:\\Users\\remid\\OneDrive\\Documenten\\Stage Kaa Gent\\Opdracht 2 benchmarking\\Fysiek\\Skillcorner G. Orban.csv"
+        bestandsnaam2 = f"Skillcorner G. Orban.csv"
     
     if not os.path.exists(bestandsnaam1) and not os.path.exists(bestandsnaam2):
         # Voer script uit als geen van beide bestanden bestaat
@@ -638,16 +638,16 @@ def radar(df, lijst):
 
 def inlezen_bestanden(lijst):
     for player in lijst:
-        df_g = pd.read_excel(fr"C:\Users\remid\OneDrive\Documenten\Stage Kaa Gent\Opdracht 2 benchmarking\Technish\Player stats {player}.xlsx")
-        df_d = pd.read_excel(fr"C:\Users\remid\OneDrive\Documenten\Stage Kaa Gent\Opdracht 2 benchmarking\Technish\Player stats {player} (1).xlsx")
-        df_a = pd.read_excel(fr"C:\Users\remid\OneDrive\Documenten\Stage Kaa Gent\Opdracht 2 benchmarking\Technish\Player stats {player} (2).xlsx")
-        df_p = pd.read_excel(fr"C:\Users\remid\OneDrive\Documenten\Stage Kaa Gent\Opdracht 2 benchmarking\Technish\Player stats {player} (3).xlsx")
+        df_g = pd.read_excel(fr"Player stats {player}.xlsx")
+        df_d = pd.read_excel(fr"Player stats {player} (1).xlsx")
+        df_a = pd.read_excel(fr"Player stats {player} (2).xlsx")
+        df_p = pd.read_excel(fr"Player stats {player} (3).xlsx")
         try:
-            df_f = pd.read_csv(fr"C:\Users\remid\OneDrive\Documenten\Stage Kaa Gent\Opdracht 2 benchmarking\Fysiek\Skillcorner {player}.csv", encoding='latin1', sep=';')
+            df_f = pd.read_csv(fr"SkillCorner {player}.csv", encoding='latin1', sep=';')
         except:
-            df_f = pd.read_csv(fr"C:\Users\remid\OneDrive\Documenten\Stage Kaa Gent\Opdracht 2 benchmarking\Fysiek\Skillcorner T. Tissoudali.csv", encoding='latin1', sep=';')
+            df_f = pd.read_csv(fr"SkillCorner T. Tissoudali.csv", encoding='latin1', sep=';')
             df_f.drop(df_f.index, inplace=True)
-        bestand = (fr"C:\Users\remid\OneDrive\Documenten\Stage Kaa Gent\Opdracht 2 benchmarking\Technish\Player stats {player}.xlsx")
+        bestand = (fr"Player stats {player}.xlsx")
         attacker(df_g, df_d, df_a, df_p, df_f, bestand)
         if options == 'Spitsen': 
             attacker_radar(df_g, df_d, df_a, df_p, df_f, bestand)
