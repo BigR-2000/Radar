@@ -44,9 +44,8 @@ lijst_games = []
 def attacker(df_general, df_defense, df_attack, df_passing, df_fysical, bestandsnaam):
     naam_delen = os.path.splitext(bestandsnaam)[0].split()
     speler_naam = " ".join(naam_delen[2:4])
-
     general = pd.DataFrame(columns=['Player', 'Total Actions', 'Succesfull Actions', '% Succesfull Actions'])
-    general['Player'] = [speler_naam] * len(df_general)
+    general['Player'] = [bestandsnaam] * len(df_general)
     general['Total Actions'] = df_general.iloc[:, 5]
     general['Succesfull Actions'] = df_general.iloc[:, 6]
     general['% Succesfull Actions'] = np.nan
@@ -54,9 +53,8 @@ def attacker(df_general, df_defense, df_attack, df_passing, df_fysical, bestands
     mean_minutes = df_general['Minutes played'].mean()
     general_grouped = ((general_grouped / mean_minutes) * 90).round(2)
     general_grouped['% Succesfull Actions'] = ((general_grouped['Succesfull Actions'] / general_grouped['Total Actions'])*100).round(2)
-
     games = pd.DataFrame()
-    games['Player'] = [speler_naam] * 1
+    games['Player'] = [bestandsnaam] * 1
     games['Total Games'] = len(general)
     games['Average Minutes per Game'] = mean_minutes.round(2)
     lijst_games.append(games)
@@ -144,7 +142,7 @@ def attacker(df_general, df_defense, df_attack, df_passing, df_fysical, bestands
 
     fysical = pd.DataFrame
     fysical = df_fysical.iloc[:,-13:]
-    fysical['Player'] = ([speler_naam] * len(df_fysical))
+    fysical['Player'] = ([bestandsnaam] * len(df_fysical))
     
     cols = list(fysical.columns)
     #nieuwe_volgorde = cols[2:4] + cols[0:2] + [cols[4]]
@@ -170,7 +168,7 @@ def attacker_radar(df_general, df_defense, df_attack, df_passing, df_fysical, be
     speler_naam = " ".join(naam_delen[6:8])
     attack = pd.DataFrame()
     mean_minutes = df_general['Minutes played'].mean()
-    attack['Player'] = [speler_naam] * len(df_general)
+    attack['Player'] = [bestandsnaam] * len(df_general)
     attack['Total Actions'] = df_general.iloc[:, 5]
     attack['Succesfull Actions'] = df_general.iloc[:, 6]
     attack['% Succesfull Actions'] = np.nan
@@ -204,7 +202,7 @@ def attacker_radar(df_general, df_defense, df_attack, df_passing, df_fysical, be
     attackfys = pd.DataFrame()
     attackfys['Topspeed'] = df_fysical['PSV-99']
     attackfys['Accelerations'] = df_fysical['Count High Acceleration P90']
-    attackfys['Player'] = [speler_naam] * len(attackfys)
+    attackfys['Player'] = [bestandsnaam] * len(attackfys)
     attackfys['Total Distance'] = df_fysical['Distance P90']
     attackfys_group = attackfys.groupby('Player').mean()
     attackfys_group.round(2)
@@ -233,7 +231,7 @@ def Winger_radar(df_general, df_defense, df_attack, df_passing, df_fysical, best
     speler_naam = " ".join(naam_delen[6:8])
     attack = pd.DataFrame()
     mean_minutes = df_general['Minutes played'].mean()
-    attack['Player'] = [speler_naam] * len(df_general)
+    attack['Player'] = [bestandsnaam] * len(df_general)
     attack['Total Actions'] = df_general.iloc[:, 5]
     attack['Succesfull Actions'] = df_general.iloc[:, 6]
     attack['% Succesfull Actions'] = np.nan
@@ -267,7 +265,7 @@ def Winger_radar(df_general, df_defense, df_attack, df_passing, df_fysical, best
     #attackfys['Player'] = [speler_naam] * len(df_general)
     attackfys = pd.DataFrame()
     attackfys['Topspeed'] = df_fysical['PSV-99']
-    attackfys['Player'] = [speler_naam] * len(attackfys)
+    attackfys['Player'] = [bestandsnaam] * len(attackfys)
     attackfys['High Accelerations'] = df_fysical['Count High Acceleration P90']
     attackfys['HI Distance'] = df_fysical['HI Distance P90']
     
@@ -293,7 +291,7 @@ def Amidfield_radar(df_general, df_defense, df_attack, df_passing, df_fysical, b
     speler_naam = " ".join(naam_delen[6:8])
     attack = pd.DataFrame()
     mean_minutes = df_general['Minutes played'].mean()
-    attack['Player'] = [speler_naam] * len(df_general)
+    attack['Player'] = [bestandsnaam] * len(df_general)
     attack['Total Actions'] = df_general.iloc[:, 5]
     attack['Succesfull Actions'] = df_general.iloc[:, 6]
     attack['% Succesfull Actions'] = np.nan
@@ -326,7 +324,7 @@ def Amidfield_radar(df_general, df_defense, df_attack, df_passing, df_fysical, b
     #attackfys['Player'] = [speler_naam] * len(df_general)
     attackfys = pd.DataFrame()
     attackfys['Topspeed'] = df_fysical['PSV-99']
-    attackfys['Player'] = [speler_naam] * len(attackfys)
+    attackfys['Player'] = [bestandsnaam] * len(attackfys)
     attackfys['HI Distance'] = df_fysical['HI Distance P90']
     attackfys['Distance'] = df_fysical['Distance P90']
     
@@ -355,7 +353,7 @@ def Cmidfield_radar(df_general, df_defense, df_attack, df_passing, df_fysical, b
     speler_naam = " ".join(naam_delen[6:8])
     attack = pd.DataFrame()
     mean_minutes = df_general['Minutes played'].mean()
-    attack['Player'] = [speler_naam] * len(df_general)
+    attack['Player'] = [bestandsnaam] * len(df_general)
     attack['Total Actions'] = df_general.iloc[:, 5]
     attack['Succesfull Actions'] = df_general.iloc[:, 6]
     attack['% Succesfull Actions'] = np.nan
@@ -393,7 +391,7 @@ def Cmidfield_radar(df_general, df_defense, df_attack, df_passing, df_fysical, b
     attackfys = pd.DataFrame()
     attackfys['Topspeed'] = df_fysical['PSV-99']
     attackfys['Accelerations'] = df_fysical['Count High Acceleration P90']
-    attackfys['Player'] = [speler_naam] * len(attackfys)
+    attackfys['Player'] = [bestandsnaam] * len(attackfys)
     attackfys['Distance'] = df_fysical['Distance P90']
     attackfys['HI Distance'] = df_fysical['HI Distance P90']
     attackfys_group = attackfys.groupby('Player').mean()
@@ -420,7 +418,7 @@ def wingback_radar(df_general, df_defense, df_attack, df_passing, df_fysical, be
     speler_naam = " ".join(naam_delen[6:8])
     attack = pd.DataFrame()
     mean_minutes = df_general['Minutes played'].mean()
-    attack['Player'] = [speler_naam] * len(df_general)
+    attack['Player'] = [bestandsnaam] * len(df_general)
     attack['Total Actions'] = df_general.iloc[:, 5]
     attack['Succesfull Actions'] = df_general.iloc[:, 6]
     attack['% Succesfull Actions'] = np.nan
@@ -451,7 +449,7 @@ def wingback_radar(df_general, df_defense, df_attack, df_passing, df_fysical, be
     attackfys['Topspeed'] = df_fysical['PSV-99']
     attackfys['High Accelerations'] = df_fysical['Count High Acceleration P90']
     #attackfys['Sprints'] = df_fysical['Count Sprint P90']
-    attackfys['Player'] = [speler_naam] * len(attackfys)
+    attackfys['Player'] = [bestandsnaam] * len(attackfys)
     attackfys['HI Distance'] = df_fysical['HI Distance P90']
     attackfys['Distance'] = df_fysical['Distance P90']   
     attackfys_group = attackfys.groupby('Player').mean()
@@ -476,7 +474,7 @@ def centerback_radar(df_general, df_defense, df_attack, df_passing, df_fysical, 
     speler_naam = " ".join(naam_delen[6:8])
     attack = pd.DataFrame()
     mean_minutes = df_general['Minutes played'].mean()
-    attack['Player'] = [speler_naam] * len(df_general)
+    attack['Player'] = [bestandsnaam] * len(df_general)
     attack['Total Actions'] = df_general.iloc[:, 5]
     attack['Succesfull Actions'] = df_general.iloc[:, 6]
     attack['% Succesfull Actions'] = np.nan
@@ -507,7 +505,7 @@ def centerback_radar(df_general, df_defense, df_attack, df_passing, df_fysical, 
     attackfys = pd.DataFrame()
     attackfys['Topspeed'] = df_fysical['PSV-99']
     attackfys['Accelerations'] = df_fysical['Count High Acceleration P90']
-    attackfys['Player'] = [speler_naam] * len(attackfys)
+    attackfys['Player'] = [bestandsnaam] * len(attackfys)
     attackfys['Distance'] = df_fysical['Distance P90']
     attackfys_group = attackfys.groupby('Player').mean()
     attackfys_group.round(2)
@@ -537,9 +535,9 @@ def radar(df, lijst):
     bestandsnaam1 = f"Skillcorner {options1}.csv"
     bestandsnaam2 = f"Skillcorner {options2}.csv"
     if options1.startswith('Top'):
-        bestandsnaam1 = f"Skillcorner G. Orban.csv"
+        bestandsnaam1 = "Skillcorner G. Orban.csv"
     if options2.startswith('Top'):
-        bestandsnaam2 = f"Skillcorner G. Orban.csv"
+        bestandsnaam2 = "Skillcorner G. Orban.csv"
     
     if not os.path.exists(bestandsnaam1) and not os.path.exists(bestandsnaam2):
         # Voer script uit als geen van beide bestanden bestaat
@@ -570,8 +568,12 @@ def radar(df, lijst):
     params = list(df1.columns)
     params = params[1:]
     params
-    #st.dataframe(df1)
-    #st.markdown(params)
+    df2 = pd.DataFrame()
+    df2 = df1.set_index('Player')
+    
+    #tabeleke = df1
+    #tabeleke.set_index('Player', inplace=True)
+    st.dataframe(df2)
     ranges = []
     a_values = []
     b_values = []
@@ -638,29 +640,30 @@ def radar(df, lijst):
 
 def inlezen_bestanden(lijst):
     for player in lijst:
-        df_g = pd.read_excel(fr"Player stats {player}.xlsx")
-        df_d = pd.read_excel(fr"Player stats {player} (1).xlsx")
-        df_a = pd.read_excel(fr"Player stats {player} (2).xlsx")
-        df_p = pd.read_excel(fr"Player stats {player} (3).xlsx")
+        df_g = pd.read_excel(f"Player stats {player}.xlsx")
+        df_d = pd.read_excel(f"Player stats {player} (1).xlsx")
+        df_a = pd.read_excel(f"Player stats {player} (2).xlsx")
+        df_p = pd.read_excel(f"Player stats {player} (3).xlsx")
         try:
-            df_f = pd.read_csv(fr"SkillCorner {player}.csv", encoding='latin1', sep=';')
+            df_f = pd.read_csv(f"SkillCorner {player}.csv", encoding='latin1', sep=';')
         except:
-            df_f = pd.read_csv(fr"SkillCorner T. Tissoudali.csv", encoding='latin1', sep=';')
+            df_f = pd.read_csv(f"SkillCorner T. Tissoudali.csv", encoding='latin1', sep=';')
             df_f.drop(df_f.index, inplace=True)
-        bestand = (fr"Player stats {player}.xlsx")
-        attacker(df_g, df_d, df_a, df_p, df_f, bestand)
+        speler = player
+        #st.dataframe(df_g)
+        attacker(df_g, df_d, df_a, df_p, df_f, speler)
         if options == 'Spitsen': 
-            attacker_radar(df_g, df_d, df_a, df_p, df_f, bestand)
+            attacker_radar(df_g, df_d, df_a, df_p, df_f, speler)
         if options == 'Centrale Middenvelders':
-            Cmidfield_radar(df_g, df_d, df_a, df_p, df_f, bestand)
+            Cmidfield_radar(df_g, df_d, df_a, df_p, df_f, speler)
         if options == 'Aanvallende Middenvelders':
-            Amidfield_radar(df_g, df_d, df_a, df_p, df_f, bestand)
+            Amidfield_radar(df_g, df_d, df_a, df_p, df_f, speler)
         if options == 'Vleugel Aanvallers':
-            Winger_radar(df_g, df_d, df_a, df_p, df_f, bestand)
+            Winger_radar(df_g, df_d, df_a, df_p, df_f, speler)
         if options == 'Vleugel Verdedigers':
-            wingback_radar(df_g, df_d, df_a, df_p, df_f, bestand)
+            wingback_radar(df_g, df_d, df_a, df_p, df_f, speler)
         if options == 'Centrale Verdedigers':
-            centerback_radar(df_g, df_d, df_a, df_p, df_f, bestand)
+            centerback_radar(df_g, df_d, df_a, df_p, df_f, speler)
 
 # Hoofdpagina met informatie/ en de navigatiebar
 col1,col2 = st.columns([8, 1.5])
@@ -717,6 +720,7 @@ defense = pd.concat(lijst_defense)
 passing = pd.concat(lijst_passing)
 fysical = pd.concat(lijst_fysical)
 fysical = fysical.round(1)
+#st.dataframe(fysical)
 games = pd.concat(lijst_games)
 
 title_with_icon('⚽️', "Gespeelde matchen")
@@ -894,6 +898,11 @@ if options == 'Aanvallende Middenvelders':
     Top6 = Top6.groupby('Player').mean()
     Top6.reset_index(inplace=True)
     attack = pd.concat([attack, Top6])
+
+attack.reset_index(inplace=True, drop=True)
+attack = attack.round(2)
+#st.dataframe(attack)
+radar(attack, radar_lijst)
 
 attack.reset_index(inplace=True, drop=True)
 attack = attack.round(2)
