@@ -904,6 +904,4 @@ attack = attack.round(2)
 #st.dataframe(attack)
 radar(attack, radar_lijst)
 
-attack.reset_index(inplace=True, drop=True)
-attack = attack.round(2)
-radar(attack, radar_lijst)
+
