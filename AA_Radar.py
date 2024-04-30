@@ -541,15 +541,15 @@ def radar(df, lijst):
     
 
     try:
-        dfsp1 = pd.read_csv(bestandsnaam1)
-    except FileNotFoundError:
+        dfsp1 = pd.read_csv(bestandsnaam1, encoding='latin1', sep=';')
+    except:
         st.markdown(f"Geen fysieke data beschikbaar voor {options1}.")
         te_verwijderen_kolommen = ['Distance', 'Total Distance', 'Sprints', 'Topspeed', 'PSV-99', 'HI Distance', 'High Accelerations', 'Accelerations']
         df = df.drop(columns=[kolom for kolom in te_verwijderen_kolommen if kolom in df])
         
     try:
-        dfsp2 = pd.read_csv(bestandsnaam2)
-    except FileNotFoundError:
+        dfsp2 = pd.read_csv(bestandsnaam2, encoding='latin1', sep=';')
+    except:
         st.markdown(f"Geen fysieke data beschikbaar voor {options2}.")
         te_verwijderen_kolommen = ['Distance', 'Total Distance', 'Sprints', 'Topspeed', 'PSV-99', 'HI Distance', 'High Accelerations', 'Accelerations']
         df = df.drop(columns=[kolom for kolom in te_verwijderen_kolommen if kolom in df])
