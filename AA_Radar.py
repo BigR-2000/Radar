@@ -904,4 +904,3 @@ attack = attack.round(2)
 #st.dataframe(attack)
 radar(attack, radar_lijst)
 
-
