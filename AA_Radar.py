@@ -539,25 +539,22 @@ def radar(df, lijst):
     if options2.startswith('Top'):
         bestandsnaam2 = "Skillcorner G. Orban.csv"
     
-    if not os.path.exists(bestandsnaam1) and not os.path.exists(bestandsnaam2):
-        # Voer script uit als geen van beide bestanden bestaat
-        st.markdown('Geen fysieke data beschikbaar voor beide spelers.')
+
+    try:
+        dfsp1 = pd.read_csv(bestandsnaam1)
+    except FileNotFoundError:
+        st.markdown(f"Geen fysieke data beschikbaar voor {options1}.")
         te_verwijderen_kolommen = ['Distance', 'Total Distance', 'Sprints', 'Topspeed', 'PSV-99', 'HI Distance', 'High Accelerations', 'Accelerations']
         df = df.drop(columns=[kolom for kolom in te_verwijderen_kolommen if kolom in df])
-    elif os.path.exists(bestandsnaam1) and not os.path.exists(bestandsnaam2):
-        # Voer script uit als alleen het eerste bestand bestaat
-        with col2:
-            st.markdown(f"Er is geen fysieke data beschikbaar voor {options2}.")
+        
+    try:
+        dfsp2 = pd.read_csv(bestandsnaam2)
+    except FileNotFoundError:
+        st.markdown(f"Geen fysieke data beschikbaar voor {options2}.")
         te_verwijderen_kolommen = ['Distance', 'Total Distance', 'Sprints', 'Topspeed', 'PSV-99', 'HI Distance', 'High Accelerations', 'Accelerations']
         df = df.drop(columns=[kolom for kolom in te_verwijderen_kolommen if kolom in df])
-    elif not os.path.exists(bestandsnaam1) and os.path.exists(bestandsnaam2):
-        # Voer script uit als alleen het tweede bestand bestaat
-        with col2:
-            st.markdown(f"Er is geen fysieke data beschikbaar voor {options1}.")
-        te_verwijderen_kolommen = ['Distance', 'Total Distance', 'Sprints', 'Topspeed', 'PSV-99', 'HI Distance', 'High Accelerations', 'Accelerations']
-        df = df.drop(columns=[kolom for kolom in te_verwijderen_kolommen if kolom in df])
-    else:
-        pass
+        
+
     #opzetten dummy df voor het regelen van de ranges voor de radar chart zonder issues
     numerieke_df = df.select_dtypes(include='number')
     gemiddelden = numerieke_df.mean()
