@@ -534,35 +534,13 @@ def radar(df, lijst):
     with col3:
         options2 = st.radio('Player2', options=lijst2)
 
-    bestandsnaam1 = f"Skillcorner {options1}.csv"
-    bestandsnaam2 = f"Skillcorner {options2}.csv"
-    if options1.startswith('Top'):
-        bestandsnaam1 = "Skillcorner G. Orban.csv"
-    if options2.startswith('Top'):
-        bestandsnaam2 = "Skillcorner G. Orban.csv"
-    
+    test = df.loc[(df['Player'] == options1) | (df['Player'] == options2)]
+    df1 = test.dropna(axis=1, how='any')
 
-    try:
-        dfsp1 = pd.read_csv(bestandsnaam1, encoding='latin1', sep=';')
-    except:
-        st.markdown(f"No physical data avaible for {options1}.")
-        te_verwijderen_kolommen = ['Distance', 'Total Distance', 'Sprints', 'Topspeed', 'PSV-99', 'HI Distance', 'High Accelerations', 'Accelerations']
-        df = df.drop(columns=[kolom for kolom in te_verwijderen_kolommen if kolom in df])
-        
-    try:
-        dfsp2 = pd.read_csv(bestandsnaam2, encoding='latin1', sep=';')
-    except:
-        st.markdown(f"No physical data avaible for {options2}.")
-        te_verwijderen_kolommen = ['Distance', 'Total Distance', 'Sprints', 'Topspeed', 'PSV-99', 'HI Distance', 'High Accelerations', 'Accelerations']
-        df = df.drop(columns=[kolom for kolom in te_verwijderen_kolommen if kolom in df])
-        
-
-    #opzetten dummy df voor het regelen van de ranges voor de radar chart zonder issues
     numerieke_df = df.select_dtypes(include='number')
     gemiddelden = numerieke_df.mean()
     df_parameters = df.fillna(gemiddelden)
-
-    df1 = df.loc[(df['Player'] == options1) | (df['Player'] == options2)]
+    
     df1.reset_index(drop=True, inplace= True)
     params = list(df1.columns)
     params = params[1:]
@@ -570,9 +548,6 @@ def radar(df, lijst):
     df2 = pd.DataFrame()
     df2 = df1.set_index('Player')
     
-    #tabeleke = df1
-    #tabeleke.set_index('Player', inplace=True)
-    st.dataframe(df2)
     ranges = []
     a_values = []
     b_values = []
@@ -592,7 +567,6 @@ def radar(df, lijst):
             b = max(df_parameters[params][x])
             b = b * 1.1
         
-
         ranges.append((a, b))
         a_values.append(a)
         b_values.append(b)
@@ -612,7 +586,6 @@ def radar(df, lijst):
     b_values = b_values[1:]
     values = (a_values, b_values)
 
-
     title = dict(
     title_name=f'{player_1} (red)',
     title_color='#B6282F',
@@ -623,19 +596,18 @@ def radar(df, lijst):
     )
 
     radar = Radar()
-    
-    #radar = Radar(background_color="#121212", patch_color="#28252C", label_color="#FFFFFF",
-            #range_color="#FFFFFF")
-    #st.dataframe(ranges)
+
     fig, ax = radar.plot_radar(ranges= ranges, params= params, values= values, 
                             radar_color=['red','blue'], 
                             title = title,
                             alphas = [0.3, 0.3],  
                             compare=True)
     fig.set_size_inches(12, 12)
-
+   
     with col2:
         st.pyplot(fig)
+
+    st.dataframe(df2)
 
 def inlezen_bestanden(lijst):
     for player in lijst:
@@ -715,7 +687,7 @@ if options == 'Central Defenders':
     inlezen_bestanden(radar_lijst)
     radar_lijst.append('Top 6 Central Def JPL')
 
-general = pd.concat(lijst_general)
+general = pd.concat(lijst_spelersgroep)
 attack = pd.concat(lijst_attack)
 defense = pd.concat(lijst_defense)
 passing = pd.concat(lijst_passing)
