@@ -10,7 +10,7 @@ from soccerplots.radar_chart import Radar
 #from Benchmarking_functions import hallo
 
 list_attackers = ['T. Tissoudali', 'L. Depoitre', 'G. Orban', 'H. Cuypers', 'A. Lind', 'A. Gudjohnsen', 'M. Breunig', 'M. Biereth', 'G. Nilsson', 'K. Dolberg', 'T. Arokodare', 'I. Thiago', 'K. Denkey', 'A. Ementa', 'D. Ayensa', 'V. Janssen', 'M. Amoura', 'T. Barry', 'I. Matanović', 'F. Mayulu', 'G. Borrelli', 'R. Durosinmi'] #'M. Biereth', 'A. Gudjohnsen''M. Fernandez-Pardo''Cho_Gue-Sung', 'N. Milanovic', 'D. Maldini','A. Crnac''P. Ratkov', 'F. Girotti', 'Y. Salech', 'R. Čaks','B. Barišić', 'B. Nsimba', ]
-list_centralmidfield = ['S. Kums', 'J. De_Sart', 'O. Gandelman', 'P. Gerkens', 'R. Onyedika', 'C. Nielsen', 'H. Vetlesen', 'P. Hrošovský', 'B. Heynen', 'M. Galarza', 'L. Lopes', 'H. Van_der_Bruggen', 'A. Vermeeren', 'M. Keita', 'A. Yusuf', 'T. Leoni', 'M. Rits', 'N. Sadiki', 'M. Rasmussen', 'C. Vanhoutte', 'L. Amani', 'A. Kadri',  'O. Højlund', 'P. Berg', 'P. Aaronson', 'O. Sørensen', 'T. Rigo', 'A. Bernede'] #'C. Rodri', , 'S. Resink','S. Esposito', 'J. Bakke', 'R. Pukštas', 'A. Morris',  'G. Busio',
+list_centralmidfield = ['S. Kums', 'J. De_Sart', 'O. Gandelman', 'P. Gerkens', 'R. Onyedika', 'C. Nielsen', 'H. Vetlesen', 'P. Hrošovský', 'B. Heynen', 'M. Galarza', 'L. Lopes', 'H. Van_der_Bruggen', 'A. Vermeeren', 'M. Keita', 'A. Yusuf', 'T. Leoni', 'M. Rits', 'N. Sadiki', 'M. Rasmussen', 'C. Vanhoutte', 'L. Amani', 'A. Kadri',  'O. Højlund', 'P. Berg', 'P. Aaronson', 'O. Sørensen', 'T. Rigo'] #, 'A. Bernede', 'L. Bate', 'F. Krastev', 'F. Krastev_total''C. Rodri', , 'S. Resink','S. Esposito', 'J. Bakke', 'R. Pukštas', 'A. Morris',  'G. Busio',
 list_attackingmidfield = ['H. Hong', 'A. Hjulsager', 'B. El_Khannouss', 'H. Vanaken', 'J. Ekkelenkamp', 'C. Puertas', 'A. Omgba']
 list_wingers = ['D. Yokota', 'M. Fofana', 'M. Sonko', 'A. Sanches', 'J. Steuckers', 'T. Hazard', 'A. Nusa',  'A. Dreyer', 'C. Ejuke', 'M. Balikwisha', 'A. Minda', 'T. Somers', 'J. Paintsil', 'A. Skov_Olsen', 'P. Zinckernagel']
 list_wingbacks = [ 'M. Samoise', 'A. Brown', 'N. Fadiga', 'L. Lapoussin', 'A. Castro-Montes', 'M. De_Cuyper', 'B. Meijer', 'Z. El_Ouahdi', 'J. Kayembe', 'G. Arteaga', 'D. Muñoz', 'H. Siquet', 'O. Wijndal', 'J. Bataille', 'K. Sardella', 'L. Augustinsson']#, 'I. Camara',
@@ -171,17 +171,18 @@ def attacker_radar(df_general, df_defense, df_attack, df_passing, df_fysical, be
     attack['Player'] = [bestandsnaam] * len(df_general)
     attack['Total Actions'] = df_general.iloc[:, 5]
     attack['Succesfull Actions'] = df_general.iloc[:, 6]
-    attack['% Succesfull Actions'] = np.nan
+    #attack['% Succesfull Actions'] = np.nan
     attack['Goals'] = df_attack.iloc[:, 5]
     attack['xG'] = df_attack.iloc[:, 9]
     attack['Goals - xG'] = np.nan
+    attack['Shots'] = df_attack.iloc[:, 7]
     attack['Goals per Shot Ratio'] = np.nan
     attack['Assists'] = df_attack.iloc[:, 6]
     attack['Passes'] = df_passing.iloc[:, 5]
     attack['Accurate Passes'] = df_passing.iloc[:, 6]
-    #attack['Progressive Runs'] = df_attack.iloc[:, 19]
-    attack['% Accurate Passes'] = np.nan
-    attack['Shots'] = df_attack.iloc[:, 7]
+    attack['Progressive Runs'] = df_attack.iloc[:, 19]
+    attack['% Passes'] = np.nan
+    
     #attack['Shots On Target'] = df_attack.iloc[:, 8]
     #attack['% Shots On Target'] = np.nan 
     attack['Dribbles'] = df_attack.iloc[:, 13]
@@ -190,10 +191,10 @@ def attacker_radar(df_general, df_defense, df_attack, df_passing, df_fysical, be
 
     attack['Offensive Duels'] = df_attack.iloc[:, 15]
     attack['Won Offensive Duels'] = df_attack.iloc[:, 16]
-    attack['% Won Offensive Duels'] = np.nan
+    attack['% Offensive Duels'] = np.nan
     attack['Aerial Duels'] = df_defense.iloc[:, 7]
     attack['Won Aerial Duels'] = df_defense.iloc[:, 8]
-    attack['% Won Aerial Duels'] = np.nan
+    attack['% Aerial Duels'] = np.nan
     attack['Losses'] = df_defense.iloc[:, 14]
     attack['Recoveries'] = df_defense.iloc[:, 16]
 
@@ -211,17 +212,17 @@ def attacker_radar(df_general, df_defense, df_attack, df_passing, df_fysical, be
 
     attack_grouped = attack.groupby('Player').mean()
     attack_grouped = ((attack_grouped / mean_minutes) * 90).round(2)
-    attack_grouped['% Succesfull Actions'] = ((attack_grouped['Succesfull Actions'] / attack_grouped['Total Actions']) * 100).round(2)
+    #attack_grouped['% Succesfull Actions'] = ((attack_grouped['Succesfull Actions'] / attack_grouped['Total Actions']) * 100).round(2)
     #attack_grouped['% Shots On Target'] = ((attack_grouped['Shots On Target'] / attack_grouped['Shots']) * 100).round(2)
     attack_grouped['% Dribbles'] = ((attack_grouped['Succesfull Dribbles'] / attack_grouped['Dribbles']) * 100).round(2)
-    attack_grouped['% Won Offensive Duels'] = ((attack_grouped['Won Offensive Duels'] / attack_grouped['Offensive Duels']) * 100).round(2)
-    attack_grouped['% Accurate Passes'] = ((attack_grouped['Accurate Passes'] / attack_grouped['Passes']) * 100).round(2)
-    attack_grouped['% Won Aerial Duels'] = ((attack_grouped['Won Aerial Duels'] / attack_grouped['Aerial Duels']) * 100).round(2)
+    attack_grouped['% Offensive Duels'] = ((attack_grouped['Won Offensive Duels'] / attack_grouped['Offensive Duels']) * 100).round(2)
+    attack_grouped['% Passes'] = ((attack_grouped['Accurate Passes'] / attack_grouped['Passes']) * 100).round(2)
+    attack_grouped['% Aerial Duels'] = ((attack_grouped['Won Aerial Duels'] / attack_grouped['Aerial Duels']) * 100).round(2)
     #attack_grouped['Rec./ Losses Ratio'] = (attack_grouped['Recoveries'] / attack_grouped['Losses']).round(2)
     attack_grouped['Goals per Shot Ratio'] = attack_grouped['Goals'] / attack_grouped['Shots']
     attack_grouped['Goals - xG'] = attack_grouped['Goals'] - attack_grouped['xG']
     attack_grouped.drop(columns=['Total Actions', 'Succesfull Actions', 'Dribbles', 'Passes', 
-                                'Accurate Passes', 'Offensive Duels', 'Won Offensive Duels', 'Aerial Duels', 'Won Aerial Duels', 'Losses', 'Recoveries', 'Shots'],
+                                'Accurate Passes', 'Offensive Duels', 'Won Offensive Duels', 'Aerial Duels', 'Won Aerial Duels', 'Losses', 'Recoveries'],
                         inplace= True) #, 'Shots On Target'
     Attackers = attack_grouped.merge(attackfys_group, how= 'left', on = 'Player')
     lijst_spelersgroep.append(Attackers)
@@ -525,42 +526,20 @@ def centerback_radar(df_general, df_defense, df_attack, df_passing, df_fysical, 
     lijst_spelersgroep.append(Attackers)
     
 def radar(df, lijst):
-    
+
     col1, col2, col3 = st.columns([1, 2, 1])
     with col1:
         options1 = st.radio('Speler1', options=lijst)
     with col3:
         options2 = st.radio('Speler2', options=lijst)
 
-    bestandsnaam1 = f"Skillcorner {options1}.csv"
-    bestandsnaam2 = f"Skillcorner {options2}.csv"
-    if options1.startswith('Top'):
-        bestandsnaam1 = "Skillcorner G. Orban.csv"
-    if options2.startswith('Top'):
-        bestandsnaam2 = "Skillcorner G. Orban.csv"
-    
+    test = df.loc[(df['Player'] == options1) | (df['Player'] == options2)]
+    df1 = test.dropna(axis=1, how='any')
 
-    try:
-        dfsp1 = pd.read_csv(bestandsnaam1, encoding='latin1', sep=';')
-    except:
-        st.markdown(f"Geen fysieke data beschikbaar voor {options1}.")
-        te_verwijderen_kolommen = ['Distance', 'Total Distance', 'Sprints', 'Topspeed', 'PSV-99', 'HI Distance', 'High Accelerations', 'Accelerations']
-        df = df.drop(columns=[kolom for kolom in te_verwijderen_kolommen if kolom in df])
-        
-    try:
-        dfsp2 = pd.read_csv(bestandsnaam2, encoding='latin1', sep=';')
-    except:
-        st.markdown(f"Geen fysieke data beschikbaar voor {options2}.")
-        te_verwijderen_kolommen = ['Distance', 'Total Distance', 'Sprints', 'Topspeed', 'PSV-99', 'HI Distance', 'High Accelerations', 'Accelerations']
-        df = df.drop(columns=[kolom for kolom in te_verwijderen_kolommen if kolom in df])
-        
-
-    #opzetten dummy df voor het regelen van de ranges voor de radar chart zonder issues
     numerieke_df = df.select_dtypes(include='number')
     gemiddelden = numerieke_df.mean()
     df_parameters = df.fillna(gemiddelden)
-
-    df1 = df.loc[(df['Player'] == options1) | (df['Player'] == options2)]
+    
     df1.reset_index(drop=True, inplace= True)
     params = list(df1.columns)
     params = params[1:]
@@ -568,29 +547,25 @@ def radar(df, lijst):
     df2 = pd.DataFrame()
     df2 = df1.set_index('Player')
     
-    #tabeleke = df1
-    #tabeleke.set_index('Player', inplace=True)
-    st.dataframe(df2)
     ranges = []
     a_values = []
     b_values = []
     #st.markdown(df1[params])
     for x in params:
         if x == 'Topspeed':
-            a = min(attack[params][x])
+            a = min(df_parameters[params][x])
             a = a * 0.96
         else:
-            a = min(attack[params][x])
+            a = min(df_parameters[params][x])
             a = a * 0.90
         
         if x == 'Topspeed':
-            b = max(attack[params][x])
+            b = max(df_parameters[params][x])
             b = b * 1.04
         else:
-            b = max(attack[params][x])
+            b = max(df_parameters[params][x])
             b = b * 1.1
         
-
         ranges.append((a, b))
         a_values.append(a)
         b_values.append(b)
@@ -610,7 +585,6 @@ def radar(df, lijst):
     b_values = b_values[1:]
     values = (a_values, b_values)
 
-
     title = dict(
     title_name=f'{player_1} (red)',
     title_color='#B6282F',
@@ -621,10 +595,7 @@ def radar(df, lijst):
     )
 
     radar = Radar()
-    
-    #radar = Radar(background_color="#121212", patch_color="#28252C", label_color="#FFFFFF",
-              #range_color="#FFFFFF")
-    #st.dataframe(ranges)
+
     fig, ax = radar.plot_radar(ranges= ranges, params= params, values= values, 
                             radar_color=['red','blue'], 
                             title = title,
@@ -635,6 +606,7 @@ def radar(df, lijst):
     with col2:
         st.pyplot(fig)
 
+    st.dataframe(df2)
 def inlezen_bestanden(lijst):
     for player in lijst:
         df_g = pd.read_excel(f"Player stats {player}.xlsx")
@@ -680,11 +652,7 @@ st.divider()
 st.write("")
 st.write("")
 
-
-
 options = st.sidebar.radio('Positie', options=['Spitsen', 'Vleugel Aanvallers', 'Aanvallende Middenvelders', 'Centrale Middenvelders', 'Vleugel Verdedigers', 'Centrale Verdedigers'])
-
-
 if options == 'Spitsen':
     radar_lijst = list_attackers
     inlezen_bestanden(radar_lijst)
@@ -711,7 +679,7 @@ if options == 'Centrale Verdedigers':
     inlezen_bestanden(radar_lijst)
     radar_lijst.append('Top 6 Central Def JPL')
 
-general = pd.concat(lijst_general)
+general = pd.concat(lijst_spelersgroep)
 attack = pd.concat(lijst_attack)
 defense = pd.concat(lijst_defense)
 passing = pd.concat(lijst_passing)
@@ -852,6 +820,7 @@ st.write("")
 st.write("")
 st.write("")
 st.write("")
+
 attack = pd.concat(lijst_spelersgroep)
 attack.reset_index(inplace=True)
 if options == 'Spitsen':
@@ -900,4 +869,3 @@ attack.reset_index(inplace=True, drop=True)
 attack = attack.round(2)
 #st.dataframe(attack)
 radar(attack, radar_lijst)
-
