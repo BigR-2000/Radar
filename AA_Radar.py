@@ -9,12 +9,12 @@ import plotly.graph_objects as go
 from soccerplots.radar_chart import Radar
 #from Benchmarking_functions import hallo
 
-list_attackers = ['T. Tissoudali', 'L. Depoitre', 'G. Orban', 'H. Cuypers', 'A. Lind', 'A. Gudjohnsen', 'M. Breunig', 'M. Biereth', 'G. Nilsson', 'K. Dolberg', 'T. Arokodare', 'I. Thiago', 'K. Denkey', 'A. Ementa', 'D. Ayensa', 'V. Janssen', 'M. Amoura', 'T. Barry', 'I. Matanović', 'F. Mayulu', 'G. Borrelli', 'R. Durosinmi'] #'M. Biereth', 'A. Gudjohnsen''M. Fernandez-Pardo''Cho_Gue-Sung', 'N. Milanovic', 'D. Maldini','A. Crnac''P. Ratkov', 'F. Girotti', 'Y. Salech', 'R. Čaks','B. Barišić', 'B. Nsimba', ]
-list_centralmidfield = ['S. Kums', 'J. De_Sart', 'O. Gandelman', 'P. Gerkens', 'R. Onyedika', 'C. Nielsen', 'H. Vetlesen', 'P. Hrošovský', 'B. Heynen', 'M. Galarza', 'L. Lopes', 'H. Van_der_Bruggen', 'A. Vermeeren', 'M. Keita', 'A. Yusuf', 'T. Leoni', 'M. Rits', 'N. Sadiki', 'M. Rasmussen', 'C. Vanhoutte', 'L. Amani', 'A. Kadri',  'O. Højlund', 'P. Berg', 'P. Aaronson', 'O. Sørensen', 'T. Rigo'] #, 'A. Bernede', 'L. Bate', 'F. Krastev', 'F. Krastev_total''C. Rodri', , 'S. Resink','S. Esposito', 'J. Bakke', 'R. Pukštas', 'A. Morris',  'G. Busio',
+list_attackers = ['T. Tissoudali', 'L. Depoitre', 'G. Orban', 'H. Cuypers', 'A. Lind', 'A. Gudjohnsen', 'M. Breunig', 'M. Biereth', 'G. Nilsson', 'K. Dolberg', 'T. Arokodare', 'I. Thiago', 'K. Denkey', 'A. Ementa', 'D. Ayensa', 'V. Janssen', 'M. Amoura', 'F. Mayulu', 'R. Durosinmi', 'M. Dean', 'C. Shpendi', 'A. Hountondji', 'F. Abiuso', 'G. Borrelli'] #'Rwan Cruz', 'Ludo Thiago', 'T. Barry', 'I. Matanović', 'M. Biereth', 'A. Gudjohnsen''M. Fernandez-Pardo''Cho_Gue-Sung', 'N. Milanovic', 'D. Maldini','A. Crnac''P. Ratkov', 'F. Girotti', 'Y. Salech', 'R. Čaks','B. Barišić', 'B. Nsimba', ]
+list_centralmidfield = ['S. Kums', 'J. De_Sart', 'O. Gandelman', 'P. Gerkens', 'R. Onyedika', 'C. Nielsen', 'H. Vetlesen', 'P. Hrošovský', 'B. Heynen', 'M. Galarza', 'L. Lopes', 'H. Van_der_Bruggen', 'A. Vermeeren', 'M. Keita', 'A. Yusuf', 'T. Leoni', 'M. Rits', 'N. Sadiki', 'M. Rasmussen', 'C. Vanhoutte', 'L. Amani', 'A. Kadri',  'O. Højlund', 'P. Berg', 'P. Aaronson', 'O. Sørensen', 'T. Rigo', 'A. Bernede', 'L. Bate', 'A. Omgba', 'B. Krushynskyi'] #,'S. Esposito',  'A. Omgba_8','J. Pršir', 'N. Souren', 'A. Omgba_10', 'M. Kusu','F. Krastev', 'F. Krastev_total', 'C. Rodri', 'A. Bernede', 'L. Bate', 'F. Krastev', 'F. Krastev_total''C. Rodri', , 'S. Resink','S. Esposito', 'J. Bakke', 'R. Pukštas', 'A. Morris',  'G. Busio',
 list_attackingmidfield = ['H. Hong', 'A. Hjulsager', 'B. El_Khannouss', 'H. Vanaken', 'J. Ekkelenkamp', 'C. Puertas', 'A. Omgba']
 list_wingers = ['D. Yokota', 'M. Fofana', 'M. Sonko', 'A. Sanches', 'J. Steuckers', 'T. Hazard', 'A. Nusa',  'A. Dreyer', 'C. Ejuke', 'M. Balikwisha', 'A. Minda', 'T. Somers', 'J. Paintsil', 'A. Skov_Olsen', 'P. Zinckernagel']
 list_wingbacks = [ 'M. Samoise', 'A. Brown', 'N. Fadiga', 'L. Lapoussin', 'A. Castro-Montes', 'M. De_Cuyper', 'B. Meijer', 'Z. El_Ouahdi', 'J. Kayembe', 'G. Arteaga', 'D. Muñoz', 'H. Siquet', 'O. Wijndal', 'J. Bataille', 'K. Sardella', 'L. Augustinsson']#, 'I. Camara',
-list_centerbacks = ['S. Mitrović', 'J. Torunarigha', 'I. Kandouss',  'T. Watanabe', 'A. Bright', 'N. Abbey', 'Z. Debast', 'T. Alderweireld', 'J. Vertonghen', 'B. Mechele', 'B. Popović', 'C. Burgess', 'C. Cuesta', 'J. Daland', 'J. Spileers', 'K. Machida', 'M. McKenzie', 'R. Sykes', 'Z. Van_den_Bosch', 'A. N\'Diaye', 'T. Cissokho', 'H. Petrov', 'M. Nadé', 'S. Karič']#'José_Marsà','J. Cordoba', 'L. Lochoshvili', 'D. Cornelius','U. Bilbao', , 'P. Awuku', 'E. Cobbaut', 'A. Filin', 'J. Rasmussen', 'S. Kotto', 'S. Kotto2', 'P. Bochniewicz',, 'A. Filin''M. Mbow',, 'E. Cobbaut'
+list_centerbacks = ['N. Ngoy', 'S. Mitrović', 'J. Torunarigha', 'I. Kandouss',  'T. Watanabe', 'A. Bright', 'N. Abbey', 'Z. Debast', 'T. Alderweireld', 'J. Vertonghen', 'B. Mechele', 'B. Popović', 'C. Burgess', 'C. Cuesta', 'J. Daland', 'J. Spileers', 'K. Machida', 'M. McKenzie', 'R. Sykes', 'Z. Van_den_Bosch', 'A. N\'Diaye', 'T. Cissokho', 'H. Petrov', 'M. Nadé', 'S. Karič', 'A. Tsoungui']#, 'José_Marsà','J. Cordoba', 'L. Lochoshvili', 'D. Cornelius','U. Bilbao', , 'P. Awuku', 'E. Cobbaut', 'A. Filin', 'J. Rasmussen', 'S. Kotto', 'S. Kotto2', 'P. Bochniewicz',, 'A. Filin''M. Mbow',, 'E. Cobbaut'
 st.set_page_config(page_title = 'Technical Benchmark Kaa Gent',
                    page_icon = ':bar_chart:',
                    layout="wide")
@@ -59,7 +59,7 @@ def attacker(df_general, df_defense, df_attack, df_passing, df_fysical, bestands
     games['Average Minutes per Game'] = mean_minutes.round(2)
     lijst_games.append(games)
     attack = pd.DataFrame()
-    attack['Player'] = ([speler_naam] * len(df_attack))
+    attack['Player'] = ([bestandsnaam] * len(df_attack))
     attack['Goals'] = df_attack.iloc[:, 5]
     attack['xG'] = df_attack.iloc[:, 9]
     attack['Assists'] = df_attack.iloc[:, 6]
@@ -84,7 +84,7 @@ def attacker(df_general, df_defense, df_attack, df_passing, df_fysical, bestands
     attack_grouped['% Won Offensive Duels'] = ((attack_grouped['Won Offensive Duels'] / attack_grouped['Offensive Duels']) * 100).round(1)
 
     passing = pd.DataFrame()
-    passing['Player'] = ([speler_naam] * len(df_passing))
+    passing['Player'] = ([bestandsnaam] * len(df_passing))
     passing['Passes'] = df_passing.iloc[:, 5]
     passing['Accurate Passes'] = df_passing.iloc[:, 6]
     passing['% Accurate Passes'] = np.nan
@@ -121,7 +121,7 @@ def attacker(df_general, df_defense, df_attack, df_passing, df_fysical, bestands
     passing_grouped['% Accurate Back Passes'] = ((passing_grouped['Accurate Back Passes'] / passing_grouped['Back Passes'])*100).round(1)
 
     defense = pd.DataFrame()
-    defense['Player'] = ([speler_naam] * len(df_defense))
+    defense['Player'] = ([bestandsnaam] * len(df_defense))
     defense['Defensive Duels'] = df_defense.iloc[:, 5]
     defense['Won Defensive Duels'] = df_defense.iloc[:, 6]
     defense['% Won Defensive Duels'] = np.nan
@@ -180,8 +180,9 @@ def attacker_radar(df_general, df_defense, df_attack, df_passing, df_fysical, be
     attack['Assists'] = df_attack.iloc[:, 6]
     attack['Passes'] = df_passing.iloc[:, 5]
     attack['Accurate Passes'] = df_passing.iloc[:, 6]
-    attack['Progressive Runs'] = df_attack.iloc[:, 19]
     attack['% Passes'] = np.nan
+    attack['Progressive Runs'] = df_attack.iloc[:, 19]
+    
     
     #attack['Shots On Target'] = df_attack.iloc[:, 8]
     #attack['% Shots On Target'] = np.nan 
@@ -357,7 +358,7 @@ def Cmidfield_radar(df_general, df_defense, df_attack, df_passing, df_fysical, b
     attack['Player'] = [bestandsnaam] * len(df_general)
     attack['Total Actions'] = df_general.iloc[:, 5]
     attack['Succesfull Actions'] = df_general.iloc[:, 6]
-    attack['% Succesfull Actions'] = np.nan
+    #attack['% Succesfull Actions'] = np.nan
     attack['Goals'] = df_attack.iloc[:, 5]
     attack['Assists'] = df_attack.iloc[:, 6]  
     #attack['Shots'] = df_attack.iloc[:, 7]
@@ -400,7 +401,7 @@ def Cmidfield_radar(df_general, df_defense, df_attack, df_passing, df_fysical, b
 
     attack_grouped = attack.groupby('Player').mean()
     attack_grouped = ((attack_grouped / mean_minutes) * 90).round(2)
-    attack_grouped['% Succesfull Actions'] = ((attack_grouped['Succesfull Actions'] / attack_grouped['Total Actions'])*100).round(2)
+    #attack_grouped['% Succesfull Actions'] = ((attack_grouped['Succesfull Actions'] / attack_grouped['Total Actions'])*100).round(2)
     attack_grouped['% Dribbles'] = ((attack_grouped['Dribbles'] / attack_grouped['TDribbles'])*100).round(2)
     attack_grouped['% Passes'] = ((attack_grouped['Accurate Passes'] / attack_grouped['Passes'])*100).round(2)
     #attack_grouped['% Long Passes'] = ((attack_grouped['Accurate Long Passes'] / attack_grouped['Long Passes'])*100).round(2)
