@@ -10,7 +10,7 @@ from scipy.stats import percentileofscore
 from datetime import datetime
 
 
-st.set_page_config(page_title = 'Technical Benchmark Kaa Gent',
+st.set_page_config(page_title = 'Datascoutingstool Kaa Gent',
                    page_icon = ':bar_chart:',
                    layout="wide")
 
