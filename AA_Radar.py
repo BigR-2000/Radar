@@ -42,12 +42,12 @@ def FysiekeDashboard():
         return leeftijd
 
     #Inlezen bestanden met de fysieke data van alle competities en samenvoegen
-    C1 = pd.read_csv(r"C:\Users\remid\OneDrive\Documenten\Stage Kaa Gent\API's Dashboards\Dashboard\D1.csv", encoding='utf-8', sep=';')
-    C2 = pd.read_csv(r"C:\Users\remid\OneDrive\Documenten\Stage Kaa Gent\API's Dashboards\Dashboard\D2.csv", encoding='utf-8', sep=';')
-    C3 = pd.read_csv(r"C:\Users\remid\OneDrive\Documenten\Stage Kaa Gent\API's Dashboards\Dashboard\D3.csv", encoding='utf-8', sep=';')
-    C4 = pd.read_csv(r"C:\Users\remid\OneDrive\Documenten\Stage Kaa Gent\API's Dashboards\Dashboard\D4.csv", encoding='utf-8', sep=';')
-    C5 = pd.read_csv(r"C:\Users\remid\OneDrive\Documenten\Stage Kaa Gent\API's Dashboards\Dashboard\D5.csv", encoding='utf-8', sep=';')
-    C6 = pd.read_csv(r"C:\Users\remid\OneDrive\Documenten\Stage Kaa Gent\API's Dashboards\Dashboard\D6.csv", encoding='utf-8', sep=';')
+    C1 = pd.read_csv(r"D1.csv", encoding='utf-8', sep=';')
+    C2 = pd.read_csv(r"D2.csv", encoding='utf-8', sep=';')
+    C3 = pd.read_csv(r"D3.csv", encoding='utf-8', sep=';')
+    C4 = pd.read_csv(r"D4.csv", encoding='utf-8', sep=';')
+    C5 = pd.read_csv(r"D5.csv", encoding='utf-8', sep=';')
+    C6 = pd.read_csv(r"D6.csv", encoding='utf-8', sep=';')
     Big_df = pd.concat([C1, C2, C3, C4, C5, C6])
     #Goedzetten dataframe
     Big_df.drop(columns= 'Match', inplace=True)
