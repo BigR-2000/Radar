@@ -89,7 +89,7 @@ def FysiekeDashboard():
     st.markdown("- De bedoeling is om snel zicht te krijgen op de fysiek sterkste spelers binnen alle competities.")
     st.divider()
     st.markdown("")
-    col1, col2, col3= st.columns([3, 3, 2])
+    col1, col2, col3, col4, col5 = st.columns([3, 0.75, 3, 0.75, 2])
     with col1:
         positiegroep = st.multiselect('positiegroep', A['Position Group'].unique())
         if positiegroep:
@@ -105,14 +105,14 @@ def FysiekeDashboard():
         club = st.multiselect('team', A['Team'].unique())
         if club:
             A = A.loc[A['Team'].isin(club)]
-    with col2:
+    with col3:
         min_age = int(A['Age'].min())
         max_age = int(A['Age'].max())
-        leeftijd = st.slider('Leeftijd filter', min_value=17, max_value=42, value=(17, 42))
+        leeftijd = st.slider('Leeftijd', min_value=17, max_value=42, value=(17, 42))
         A = A[(A['Age'] >= leeftijd[0]) & (A['Age'] <= leeftijd[1])]
         min_matches = int(A['Matches Played'].min())
         max_matches = int(A['Matches Played'].max())
-        matchen = st.slider('Matches filter', min_value=3, max_value=40, value=(3, 40))
+        matchen = st.slider('Matchen', min_value=3, max_value=40, value=(3, 40))
         A = A[(A['Matches Played'] >= matchen[0]) & (A['Matches Played'] <= matchen[1])]
         metrics = st.multiselect('show parameters', ['Distance P90', 'Running Distance P90', 'HSR Distance P90', 'Sprinting Distance P90', 'HI Distance P90', 'Count HSR P90', 'Count Sprint P90', 'Count HI P90', 'Count Medium Acceleration P90', 'Count High Acceleration P90', 'Count Medium Deceleration P90', 'Count High Deceleration P90', 'Topspeed'])
         general = st.multiselect('show info', ['Position', 'Position Group', 'Age', 'Team', 'Competition', 'Matches Played'])
@@ -121,7 +121,7 @@ def FysiekeDashboard():
         if not metrics:
             metrics =  ['Distance P90', 'Running Distance P90', 'HSR Distance P90', 'Sprinting Distance P90', 'HI Distance P90', 'Count HSR P90', 'Count Sprint P90', 'Count HI P90', 'Count Medium Acceleration P90', 'Count High Acceleration P90', 'Count Medium Deceleration P90', 'Count High Deceleration P90', 'Topspeed']
 
-    with col3:
+    with col5:
         filter = st.multiselect('filter parameters', ['Distance P90', 'Running Distance P90', 'HSR Distance P90', 'Sprinting Distance P90', 'HI Distance P90', 'Count HSR P90', 'Count Sprint P90', 'Count HI P90', 'Count Medium Acceleration P90', 'Count High Acceleration P90', 'Count Medium Deceleration P90', 'Count High Deceleration P90', 'Topspeed'])
         if filter:
             for parameter in filter:
