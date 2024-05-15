@@ -812,7 +812,7 @@ def radarcharts():
         #st.image("logo.png", width=150)
     st.markdown('Beschrijving van de app:')      
     st.markdown("- Met deze tool kan de data van verschillende spelers worden vergeleken over het seizoen 23/24 (Competitie, Beker en Europese matchen).")
-    st.markdown("- Data van zowel WyScout voor technische informatie als SkillCorner voor fysieke data wordt gebruikt. Merk op dat de nauwkeurigheid van WyScout data niet altijd 100% is, neem dit in overweging bij genomen analyses.")
+    st.markdown("- Data van zowel WyScout voor technische informatie als SkillCorner voor fysieke data wordt gebruikt. Merk op dat de nauwkeurigheid van WyScout data niet altijd 100% is, neem dit in overweging bij genomen analyses. Beschrijving van alle gebruikte metrics is te vinden op https://dataglossary.wyscout.com")
     st.markdown("- Alle gegevens worden omgezet naar gemiddelden per 90 minuten")
     st.markdown("- Voor elke positie worden enkele spelers belicht, waaronder die van KAA Gent zelf, andere spelers van de JPL, alsook prospects voor KAA Gent.")
     st.markdown("- Deze objectieve weergave van spelersprestaties kan de subjectieve beoordelingen aanvullen, waardoor een meer alomvattend beeld ontstaat.")
